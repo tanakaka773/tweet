@@ -1,3 +1,4 @@
 Rails.application.routes.draw do
-  resources :remarks, only: :index
+  root to: 'remarks#index'
+  resources :remarks, only: [:index, :new, :create, :destroy, :edit, :update]
 end
