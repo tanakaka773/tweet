@@ -1,0 +1,10 @@
+<div class="contents row">
+  <% @remarks.each do |remark| %>
+    <div class="content_post" style="background-image: url(<%= remark.image %>);">
+      <%= simple_format(remark.text) %>
+      <span class="name">
+        <%= remark.name %>
+      </span>
+    </div>
+  <% end %>
+</div>
