@@ -1,4 +1,5 @@
 class RemarksController < ApplicationController
+  before_action :set_remark, only: [:edit, :show]
 
   def index
     @remarks = Remark.all
@@ -18,7 +19,6 @@ class RemarksController < ApplicationController
   end
 
   def edit
-    @remark = Remark.find(params[:id])
   end
 
   def update
@@ -26,9 +26,16 @@ class RemarksController < ApplicationController
     remark.update(remark_params)
   end
 
+  def show
+  end
+
   private
   def remark_params
     params.require(:remark).permit(:name, :image, :text)
+  end
+
+  def set_remark
+    @remark = Remark.find(params[:id])
   end
 
 end
