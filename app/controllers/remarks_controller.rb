@@ -1,5 +1,6 @@
 class RemarksController < ApplicationController
   before_action :set_remark, only: [:edit, :show]
+  before_action :move_to_index, except: [:index, :show]
 
   def index
     @remarks = Remark.all
@@ -36,6 +37,10 @@ class RemarksController < ApplicationController
 
   def set_remark
     @remark = Remark.find(params[:id])
+  end
+
+  def move_to_index
+    redirect_to action: :index unless user_signed_in?
   end
 
 end
