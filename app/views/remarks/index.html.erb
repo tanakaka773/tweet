@@ -7,17 +7,21 @@
           <li>
             <%= link_to '詳細', "/remarks/#{remark.id}", method: :get %>
           </li>
-          <li>
-            <%= link_to '編集', "/remarks/#{remark.id}/edit", method: :get %>
-          </li>
-          <li>
-            <%= link_to '削除', "/remarks/#{remark.id}", method: :delete %>
-          </li>
+          <% if user_signed_in? && current_user.id == remark.user_id %>
+            <li>
+              <%= link_to '編集', "/remarks/#{remark.id}/edit", method: :get %>
+            </li>
+            <li>
+              <%= link_to '削除', "/remarks/#{remark.id}", method: :delete %>
+            </li>
+          <% end%>
         </ul>
       </div>
       <%= simple_format(remark.text) %>
       <span class="name">
-        <%= remark.name %>
+        <a href="/users/<%= remark.user.id %>%">
+          <span>投稿者</span><% remark.user.nickname %>
+        </a>
       </span>
     </div>
   <% end %>

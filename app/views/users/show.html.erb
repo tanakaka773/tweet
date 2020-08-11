@@ -1,0 +1,9 @@
+<div class="contents row">
+  <p><%= @nickname %>さんの投稿一覧</p>
+
+  <% @remarks.each do |remark| %>
+    <div class="content_post" style="background-image: url(<%= remark.image %>);">
+      <%= simple_format(remark.text) %>
+    </div>
+  <% end %>
+</div>

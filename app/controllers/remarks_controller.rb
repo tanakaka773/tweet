@@ -3,7 +3,7 @@ class RemarksController < ApplicationController
   before_action :move_to_index, except: [:index, :show]
 
   def index
-    @remarks = Remark.all
+    @remarks = Remark.includes(:user)
   end
 
   def new
@@ -32,7 +32,7 @@ class RemarksController < ApplicationController
 
   private
   def remark_params
-    params.require(:remark).permit(:name, :image, :text)
+    params.require(:remark).permit(:image, :text).merge(user_id: current_user.id)
   end
 
   def set_remark
